@@ -1,0 +1,34 @@
+name: Megan AI (Offline)
+slug: megan_ai
+description: Offline Megan-inspired assistant using llama.cpp (CPU) with TinyLlama 1.1B Chat
+version: "2.0.1"
+arch: [amd64, aarch64]
+startup: services
+boot: auto
+init: false
+webui: "http://[HOST]:[PORT:8000]/demo"
+ports:
+  8000/tcp: 8000
+map:
+  - addons_config:rw
+  - config:rw
+options:
+  PERSONA_NAME: "Megan"
+  PERSONA_PROMPT: >
+    You are Megan, a warm, slightly sassy, protective home companion. Be concise,
+    friendly and safety-forward.
+  N_THREADS: 4
+  N_CTX: 4096
+  TEMPERATURE: 0.6
+  TOP_P: 0.9
+  MODEL_FILE: ""
+  MODEL_URL: "https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf"
+schema:
+  PERSONA_NAME: str
+  PERSONA_PROMPT: str
+  N_THREADS: int
+  N_CTX: int
+  TEMPERATURE: float
+  TOP_P: float
+  MODEL_FILE: str
+  MODEL_URL: str
