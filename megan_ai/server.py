@@ -77,7 +77,7 @@ SYSTEM_PROMPT = (
     f"{PERSONA_PROMPT} Keep answers concise, friendly, gently sassy, and safety-forward."
 )
 
-app = FastAPI(title=f"{PERSONA_NAME} (Offline)", version="2.0.4")
+app = FastAPI(title=f"{PERSONA_NAME} (Offline)", version="2.0.5")
 
 class ChatIn(BaseModel):
     message: str

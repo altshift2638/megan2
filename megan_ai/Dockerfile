@@ -1,16 +1,16 @@
 ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:latest
 FROM ${BUILD_FROM}
 
-# Enable Alpine edge main to get libexecinfo-dev (execinfo.h)
+# Add Alpine edge main (for libexecinfo-dev providing execinfo.h)
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
 
-# Build deps for llama-cpp-python
+# Build deps
 RUN apk add --no-cache python3 py3-pip bash curl jq git build-base cmake ninja libexecinfo-dev
 
-# Compile flags
+# Compile options
 ENV CMAKE_ARGS="-DGGML_NATIVE=ON -DGGML_BLAS=OFF"
 
-# venv + deps
+# Python venv + deps
 RUN python3 -m venv /venv \
  && . /venv/bin/activate \
  && pip install --no-cache-dir --upgrade pip wheel setuptools \
@@ -19,6 +19,7 @@ RUN python3 -m venv /venv \
 ENV PATH="/venv/bin:$PATH"
 WORKDIR /app
 
+# App files
 COPY run.sh /run.sh
 COPY server.py /app/server.py
 RUN chmod +x /run.sh && sed -i 's/\r$//' /run.sh

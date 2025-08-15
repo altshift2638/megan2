@@ -1,7 +1,7 @@
 name: Megan AI (Offline)
 slug: megan_ai
-description: Offline Megan-inspired assistant using llama.cpp (CPU) with TinyLlama 1.1B Chat
-version: "2.0.4"
+description: Offline Megan-style assistant using llama.cpp (CPU) with TinyLlama 1.1B Chat
+version: "2.0.5"
 arch: [amd64, aarch64]
 startup: services
 boot: auto
